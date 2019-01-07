@@ -15,6 +15,11 @@ class CreateTasksTable extends Migration
     {
         Schema::create('tasks', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('title');
+            $table->text('content');
+            $table->enum('task_state', ['pending', 'completed', 'delayed', 'omitted'])->nullable()->default('pending');
+            $table->integer('suit_id')->unsigned()->index()->nullable();
+            $table->foreign('suit_id')->references('id')->on('suits');
             $table->timestamps();
         });
     }
