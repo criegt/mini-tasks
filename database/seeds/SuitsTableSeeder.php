@@ -11,6 +11,6 @@ class SuitsTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        factory(App\Suit::class, 10)->create();
     }
 }
