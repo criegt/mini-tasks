@@ -12,9 +12,15 @@
 */
 
 Route::get('/', function () {
-    return view('test');
-});
+    return view('welcome');
+})->middleware('guest');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('{all}', function () {
+    return view('home');
+})->where('all', '^((?!api).)*')->middleware('auth');
+
+Route::get('/api/test', function () {
+   return view('test'); 
+});
