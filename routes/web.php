@@ -20,7 +20,3 @@ Auth::routes();
 Route::get('{all}', function () {
     return view('home');
 })->where('all', '^((?!api).)*')->middleware('auth');
-
-Route::get('/api/test', function () {
-   return view('test'); 
-});

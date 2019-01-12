@@ -14,7 +14,7 @@ class SuitController extends Controller
      */
     public function index()
     {
-        //
+        return Suit::get();
     }
 
     /**

@@ -5,13 +5,13 @@
     <div class="row justify-content-center">
         <div class="col-lg-5">
             <div class="card bg-light shadow border-0">
-                <div class="card-header bg-white py-4">
+                <div class="card-header py-4">
                     <div class="text-primary text-center mb-1">
                         <h1><i class="far fa-user-circle"></i></h1>
                         <h5>Login</h5>
                     </div>
                 </div>
-                <div class="card-body px-lg-5 py-lg-5">
+                <div class="card-body bg-white px-lg-5 py-lg-5">
                     <form method="POST" action="{{ route('login') }}" role="form">
                         @csrf
                         <div class="form-group mb-3">
@@ -50,17 +50,12 @@
                         </div>
                     </form>
                     <div class="row mt-3">
-                        <div class="col-6">
+                        <div class="col-12">
                             @if (Route::has('password.request'))
                                 <a href="{{ route('password.request') }}">
-                                    Forgot password?
+                                    Forgot your password?
                                 </a>
                             @endif
-                        </div>
-                        <div class="col-6 text-right">
-                            <a href="{{ route('register') }}">
-                                Create new account
-                            </a>
                         </div>
                     </div>
                 </div>
