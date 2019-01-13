@@ -23,14 +23,8 @@
 
 <script>
 import axios from 'axios'
+import { Step } from '../../models/step';
 
-class Step {
-
-    constructor() {
-        this.content
-        this.task_id
-    }
-}
 
 export default {
     props: {

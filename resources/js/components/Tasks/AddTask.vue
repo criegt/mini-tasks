@@ -32,16 +32,7 @@
 
 <script>
     import axios from 'axios'
-
-    class Task {
-
-        constructor() {
-            this.title
-            this.content
-            this.state
-            this.suit_id
-        }
-    }
+    import { Task } from '../../models/task';
 
     export default {
         data() {

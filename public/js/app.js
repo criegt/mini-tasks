@@ -1807,8 +1807,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
+/* harmony import */ var _models_step__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../models/step */ "./resources/js/models/step.js");
 //
 //
 //
@@ -1833,13 +1832,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 //
 //
 
-
-var Step = function Step() {
-  _classCallCheck(this, Step);
-
-  this.content;
-  this.task_id;
-};
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -1848,7 +1840,7 @@ var Step = function Step() {
   data: function data() {
     return {
       addActive: false,
-      step: new Step()
+      step: new _models_step__WEBPACK_IMPORTED_MODULE_1__["Step"]()
     };
   },
   created: function created() {
@@ -1860,7 +1852,7 @@ var Step = function Step() {
 
       var url = '/api/steps';
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.post(url, this.step).then(function (response) {
-        _this.step = new Step();
+        _this.step = new _models_step__WEBPACK_IMPORTED_MODULE_1__["Step"]();
         _this.step.task_id = _this.taskId;
 
         _this.$emit('step-created', response.data);
@@ -2166,8 +2158,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
+/* harmony import */ var _models_task__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../models/task */ "./resources/js/models/task.js");
 //
 //
 //
@@ -2201,20 +2192,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 //
 //
 
-
-var Task = function Task() {
-  _classCallCheck(this, Task);
-
-  this.title;
-  this.content;
-  this.state;
-  this.suit_id;
-};
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      task: new Task(),
+      task: new _models_task__WEBPACK_IMPORTED_MODULE_1__["Task"](),
       moreActive: false
     };
   },
@@ -2224,7 +2206,7 @@ var Task = function Task() {
 
       var url = '/api/tasks';
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.post(url, this.task).then(function (response) {
-        _this.task = new Task();
+        _this.task = new _models_task__WEBPACK_IMPORTED_MODULE_1__["Task"]();
         var task = response.data;
 
         if (!task.steps) {
@@ -37301,6 +37283,50 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TasksMain_vue_vue_type_template_id_339e968b___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
+
+/***/ }),
+
+/***/ "./resources/js/models/step.js":
+/*!*************************************!*\
+  !*** ./resources/js/models/step.js ***!
+  \*************************************/
+/*! exports provided: Step */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Step", function() { return Step; });
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Step = function Step() {
+  _classCallCheck(this, Step);
+
+  this.content;
+  this.task_id;
+};
+
+/***/ }),
+
+/***/ "./resources/js/models/task.js":
+/*!*************************************!*\
+  !*** ./resources/js/models/task.js ***!
+  \*************************************/
+/*! exports provided: Task */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Task", function() { return Task; });
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Task = function Task() {
+  _classCallCheck(this, Task);
+
+  this.title;
+  this.content;
+  this.state;
+  this.suid_id;
+};
 
 /***/ }),
 
