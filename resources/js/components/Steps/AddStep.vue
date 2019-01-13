@@ -8,7 +8,7 @@
         </span>
         <div class="input-group"
             v-if="addActive">
-            <input type="text" class="form-control" placeholder="Step"
+            <input type="text" class="form-control form-control-sm" placeholder="Step"
                 v-model="step.content"
                 @blur="addActive = false"
                 v-focus>

@@ -23000,7 +23000,7 @@ var render = function() {
                 },
                 { name: "focus", rawName: "v-focus" }
               ],
-              staticClass: "form-control",
+              staticClass: "form-control form-control-sm",
               attrs: { type: "text", placeholder: "Step" },
               domProps: { value: _vm.step.content },
               on: {
