@@ -1,5 +1,5 @@
 <template>
-    <div class="card shadow-sm border-0 my-2">
+    <div class="card shadow-sm border-0 mb-2">
         <div class="card-body">
             <form method="post" @submit.prevent="createTask()">
                 <div class="input-group">
@@ -12,28 +12,21 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-12">
-                        <a href="#" class="dropdown-toggle" @click.prevent="optionsActive = !optionsActive">More</a>
+                        <a href="#" class="dropdown-toggle" @click.prevent="moreActive = !moreActive">More</a>
                     </div>
                 </div>
                 <transition name="fade">
-                    <div class="row" v-if="optionsActive">
+                    <div class="row" v-if="moreActive">
                         <div class="col-sm-12">
                             <div class="input-group">
                                 <textarea class="form-control" rows="3" placeholder="Write something here ..." v-model="task.content"></textarea>
-                            </div>
-                        </div>
-                        <div class="col-sm-12">
-                            <div class="input-group">
-                                <select class="form-control mt-2">
-                                    <option value="0">Select one suit</option>
-                                    <option v-for="suit in suits" :key="suit.id" :value="suit.id">{{ suit.title }}</option>
-                                </select>
                             </div>
                         </div>
                     </div>
                 </transition>
             </form>
         </div>
+        <span class="border-bottom"></span>
     </div>
 </template>
 
@@ -46,7 +39,7 @@
             this.title
             this.content
             this.state
-            this.suid_id
+            this.suit_id
         }
     }
 
@@ -54,38 +47,20 @@
         data() {
             return {
                 task: new Task(),
-                suits: [],
-                selectedSuit: 0,
-                optionsActive: false
+                moreActive: false
             }
-        },
-        created() {
-            this.getSuits()
         },
         methods: {
             createTask() {
                 let url = '/api/tasks'
                 axios.post(url, this.task)
                     .then(response => {
-                        console.log(response.data)
                         this.task = new Task()
                         this.$emit('task-created', response.data)
                     }).catch(error => {
                         console.log(error)
                     })
-            },
-            getSuits() {
-                let url = '/api/suits'
-                axios.get(url)
-                    .then(response => {
-                        console.log(response.data)
-                        this.suits = response.data
-                    }).catch(error => {
-                        console.log(error)
-                    })
             }
-        },
-        mounted() {
         }
     }
 
@@ -99,10 +74,7 @@
 
     .fade-enter,
     .fade-leave-to
-
-    /* .fade-leave-active below version 2.1.8 */
-        {
+    {
         opacity: 0;
     }
-
 </style>

@@ -22,7 +22,7 @@
                             <i class="far fa-user-circle" style="font-size:1.5rem;"></i> <span class="caret"></span>
                         </a>
 
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                        <div id="navbarMenuDropdown" class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                             <router-link to="/about" class="dropdown-item">About</router-link>
                             <div class="dropdown-divider"></div>
                             <form method="POST"
@@ -64,3 +64,9 @@ export default {
     }
 }
 </script>
+
+<style>
+#navbarMenuDropdown {
+    z-index: 100000;
+}
+</style>

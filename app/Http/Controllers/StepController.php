@@ -14,17 +14,7 @@ class StepController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        
     }
 
     /**
@@ -35,7 +25,19 @@ class StepController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        $this->validate($request, [
+            'content' => 'required',
+            'task_id' => 'required'
+        ]);
+
+        $step = Step::create([
+            'content' => $request->content,
+            'task_id' => $request->task_id,
+            'state' => false
+        ]);
+        
+        return $step;
     }
 
     /**

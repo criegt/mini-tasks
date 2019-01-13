@@ -1,10 +1,15 @@
 <template>
     <div>
-        <add-task></add-task>
+        <div class="row sticky-top">
+            <div class="col-sm-12">
+                <add-task @task-created="addTask"></add-task>
+            </div>
+        </div>
         <task-item
             v-for="task in tasks" 
             :key="task.id"
-            :task="task"></task-item>
+            :task="task"
+            @task-deleted="deleteTask"></task-item>
         <infinite-loading @infinite="infiniteHandler"></infinite-loading>
     </div>
 </template>
@@ -38,6 +43,24 @@ export default {
             }).catch(error => {
                 console.log(error)
             })
+        },
+        refreshTasks() {
+            this.page = 1
+            let url = '/api/tasks?page=' + this.page
+            axios.get(url)
+                .then(response => {
+                    this.tasks = response.data.data
+                })
+                .catch(error => {})
+        },
+        addTask(task) {
+            this.tasks.unshift(task)
+        },
+        deleteTask(task) {
+            this.tasks = this.tasks.filter((t) => t !== task)
+            if(!this.tasks.length) {
+                this.refreshActivities()
+            }
         }
     },
     components: {

@@ -7,6 +7,9 @@
             <div class="card">
                 <div class="card-body text-center">
                     <h1>Welcome</h1>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt modi dolorem dolor non necessitatibus ab quae soluta accusantium cupiditate iure voluptate facere, in consectetur, earum repellendus esse facilis, officia dolores.</p>
+                    <br>
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iure impedit maiores, quasi exercitationem autem asperiores at reprehenderit, laborum vel eligendi architecto dolorum sapiente voluptatum cumque quae expedita debitis pariatur odio.</p>
                 </div>
             </div>
         </div>

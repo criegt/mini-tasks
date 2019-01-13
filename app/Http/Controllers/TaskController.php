@@ -14,7 +14,7 @@ class TaskController extends Controller
      */
     public function index()
     {
-        return Task::paginate();
+        return Task::with('steps')->orderBy('created_at', 'desc')->paginate();
     }
 
     /**
@@ -68,6 +68,6 @@ class TaskController extends Controller
      */
     public function destroy(Task $task)
     {
-        //
+        $task->delete();
     }
 }

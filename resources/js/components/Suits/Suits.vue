@@ -1,10 +1,12 @@
 <template>
-    <div>
+    <div class="m-2">
         <h4>Suits</h4>
-        <ul class="list-group">
-            <li class="list-group-item"
+        <ul class="list-unstyled">
+            <li class="mb-2"
                 v-for="suit in suits" :key="suit.id">
-                {{ suit.title }}
+                <router-link to="/">
+                    <small>{{ suit.title }}</small>
+                </router-link>
             </li>
         </ul>
     </div>
@@ -24,7 +26,6 @@ export default {
         getSuits() {
             let url = '/api/suits'
             axios.get(url).then(response => {
-                console.table(response.data)
                 this.suits = response.data
             }).catch(error => {
                 console.log(error)

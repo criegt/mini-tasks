@@ -24,3 +24,7 @@ Route::resource('/tasks', 'TaskController')->except([
 Route::resource('/suits', 'SuitController')->except([
     'create', 'edit'
 ]);
+
+Route::resource('/steps', 'StepController')->except([
+    'create', 'edit'
+]);

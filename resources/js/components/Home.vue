@@ -1,11 +1,16 @@
 <template>
     <div class="container mt-4">
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-3 border-right">
                 <suits></suits>
             </div>
-            <div class="col-md-8">
+            <div class="col-md-6">
                 <tasks></tasks>
+            </div>
+            <div class="col-md-3 border-left">
+                <div class="row ml-2 sticky-top">
+                    <suits></suits>
+                </div>
             </div>
         </div>
     </div>
@@ -17,7 +22,7 @@ import Suits from './suits/Suits.vue'
 
 export default {
     mounted() {
-        console.log('Component mounted.')
+        //console.log('Component mounted.')
     },
     components:{
         'tasks': Tasks,
