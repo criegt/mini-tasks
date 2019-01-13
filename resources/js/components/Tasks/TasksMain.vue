@@ -9,7 +9,10 @@
             v-for="task in tasks" 
             :key="task.id"
             :task="task"
-            @task-deleted="deleteTask"></task-item>
+            @task-deleted="deleteTask"
+            @need-edit-task="openEditTask">
+        </task-item>
+        <edit-task :task="selectedTask" :task-change="taskChange"></edit-task>
         <infinite-loading spinner="waveDots" class="mt-4"
             @infinite="infiniteHandler">
             <div slot="no-more">
@@ -27,11 +30,13 @@ import axios from 'axios'
 import InfiniteLoading from 'vue-infinite-loading'
 import AddTask from './AddTask.vue'
 import TaskItem from './TaskItem.vue'
+import EditTask from './EditTask.vue'
 
 export default {
     data() {
         return {
             selectedTask: {},
+            taskChange: 0,
             tasks: [],
             page: 0
         }
@@ -69,12 +74,17 @@ export default {
             if(!this.tasks.length) {
                 this.refreshActivities()
             }
+        },
+        openEditTask(task) {
+            this.selectedTask = task
+            this.taskChange++
         }
     },
     components: {
         'add-task': AddTask,
         'infinite-loading': InfiniteLoading,
-        'task-item': TaskItem
+        'task-item': TaskItem,
+        'edit-task': EditTask
     }
 }
 </script>

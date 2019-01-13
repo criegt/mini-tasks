@@ -59,6 +59,7 @@
 <script>
 import axios from 'axios'
 import moment from 'moment'
+import iziToast from 'izitoast'
 
 import StepsMain from '../Steps/StepsMain.vue'
 
@@ -80,6 +81,7 @@ export default {
             axios.delete(url)
                 .then(response => {
                     this.$emit('task-deleted', task)
+                    iziToast.success({ title: 'Task deleted '})
                 })
                 .catch(error => {
                     console.log(error)
