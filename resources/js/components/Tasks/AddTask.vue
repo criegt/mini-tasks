@@ -32,6 +32,7 @@
 
 <script>
     import axios from 'axios'
+    import iziToast from 'izitoast'
     import { Task } from '../../models/task';
 
     export default {
@@ -52,13 +53,13 @@
                             task.steps = []
                         }
                         this.$emit('task-created', task)
+                        iziToast.success({ title: 'Task created'})
                     }).catch(error => {
                         console.log(error)
                     })
             }
         }
     }
-
 </script>
 
 <style>

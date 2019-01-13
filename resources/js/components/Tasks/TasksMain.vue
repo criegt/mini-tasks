@@ -10,7 +10,15 @@
             :key="task.id"
             :task="task"
             @task-deleted="deleteTask"></task-item>
-        <infinite-loading @infinite="infiniteHandler"></infinite-loading>
+        <infinite-loading spinner="waveDots" class="mt-4"
+            @infinite="infiniteHandler">
+            <div slot="no-more">
+                <span class="text-muted">
+                    That's all
+                </span>
+            </div>
+            <div slot="no-results">Here is not more results</div>
+        </infinite-loading>
     </div>
 </template>
 
@@ -38,7 +46,7 @@ export default {
                     this.tasks = this.tasks.concat(tasks)
                     $state.loaded()
                 } else {
-                    $state.completed()
+                    $state.complete()
                 }
             }).catch(error => {
                 console.log(error)

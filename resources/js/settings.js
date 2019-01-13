@@ -1,14 +1,20 @@
 window.axios = require('axios')
 import NProgress from 'nprogress'
-
-window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
-
+import iziToast from 'izitoast'
 
 //Barra superior de carga
 NProgress.configure({
     minimum: 0.2,
     showSpinner: false
 });
+
+iziToast.settings({
+    position: 'bottomLeft'
+});
+
+
+// Configuraciones de axios
+window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
 
 // Interceptor para las peticiones
 window.axios.interceptors.request.use(function(config) {
