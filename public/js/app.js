@@ -2308,6 +2308,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -22385,12 +22390,31 @@ var render = function() {
           _vm._v(" "),
           _c("div", { staticClass: "row" }, [
             _c("div", { staticClass: "col-sm-12" }, [
+              !_vm.task.content && !_vm.editContentActive
+                ? _c(
+                    "span",
+                    {
+                      staticClass: "text-muted",
+                      on: {
+                        click: function($event) {
+                          _vm.editContentActive = true
+                        }
+                      }
+                    },
+                    [
+                      _vm._v(
+                        "\n                    Add content...\n                "
+                      )
+                    ]
+                  )
+                : _vm._e(),
+              _vm._v(" "),
               !_vm.editContentActive
                 ? _c("span", {
                     domProps: { innerHTML: _vm._s(_vm.task.content) },
                     on: {
                       click: function($event) {
-                        _vm.editContentActive = !_vm.editContentActive
+                        _vm.editContentActive = true
                       }
                     }
                   })
@@ -22414,23 +22438,17 @@ var render = function() {
                       keyup: function($event) {
                         if (
                           !("button" in $event) &&
-                          _vm._k(
-                            $event.keyCode,
-                            "enter",
-                            13,
-                            $event.key,
-                            "Enter"
-                          )
+                          _vm._k($event.keyCode, "esc", 27, $event.key, [
+                            "Esc",
+                            "Escape"
+                          ])
                         ) {
                           return null
                         }
-                        if (!$event.shiftKey) {
-                          return null
-                        }
-                        _vm.editContentActive = !_vm.editContentActive
+                        _vm.editContentActive = false
                       },
                       blur: function($event) {
-                        _vm.editContentActive = !_vm.editContentActive
+                        _vm.editContentActive = false
                       },
                       input: function($event) {
                         if ($event.target.composing) {

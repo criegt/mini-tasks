@@ -33,15 +33,20 @@
             <steps-main :task-id="task.id" :steps="task.steps"></steps-main>
             <div class="row">
                 <div class="col-sm-12">
+                    <span class="text-muted"
+                        v-if="!task.content && !editContentActive"
+                        @click="editContentActive= true">
+                        Add content...
+                    </span>
                     <span v-if="!editContentActive"
-                        @click="editContentActive = !editContentActive"
+                        @click="editContentActive = true"
                         v-html="task.content">
                     </span>
                     <textarea class="form-control" :id="`stepContent${task.id}Textarea`"
                         v-if="editContentActive"
                         v-model="task.content"
-                        @keyup.shift.enter="editContentActive = !editContentActive"
-                        @blur="editContentActive = !editContentActive"
+                        @keyup.esc="editContentActive = false"
+                        @blur="editContentActive = false"
                         v-focus>
                     </textarea>
                 </div>
