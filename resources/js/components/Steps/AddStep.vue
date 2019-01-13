@@ -1,26 +1,24 @@
 <template>
-    <div>
+    <form method="POST" 
+        @submit.prevent="createStep">
         <span class="text-muted pb-2"
             v-if="!addActive"
             @click="addActive = true">
             Add step...
         </span>
-        <form method="POST" 
-            @submit.prevent="createStep">
-            <div class="input-group"
-                v-if="addActive">
-                <input type="text" class="form-control" placeholder="Step"
-                    v-model="step.content"
-                    @blur="addActive = false"
-                    v-focus>
-                <div class="input-group-prepend">
-                    <button class="btn btn-default btn-sm" type="submit">
-                        <i class="fas fa-plus"></i>
-                    </button>
-                </div>
+        <div class="input-group"
+            v-if="addActive">
+            <input type="text" class="form-control" placeholder="Step"
+                v-model="step.content"
+                @blur="addActive = false"
+                v-focus>
+            <div class="input-group-prepend">
+                <button class="btn btn-default btn-sm" type="submit">
+                    <i class="fas fa-plus"></i>
+                </button>
             </div>
-        </form>
-    </div>
+        </div>
+    </form>
 </template>
 
 <script>

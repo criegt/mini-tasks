@@ -5,27 +5,19 @@
             @step-created="addStep">
         </add-step>
         <ul class="list-unstyled">
-            <li class="border-bottom py-2"
+            <step-item
                 v-for="step in steps" 
                 :key="step.id"
-                @click="step.state = !step.state">
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" 
-                        :id="`state${step.id}Check`"
-                        v-model="step.state">
-                    <label class="custom-control-label" 
-                        :for="`state${step.id}Check`"
-                        :class="{ 'text-muted': step.state, 'line': step.state }">
-                        {{ step.content }}
-                    </label>
-                </div>
-            </li>
+                :step="step"
+                @step-deleted="deleteStep">
+            </step-item>
         </ul>
     </div>
 </template>
 
 <script>
 import AddStep from './AddStep.vue'
+import StepItem from './StepItem.vue'
 
 export default {
     props: {
@@ -35,19 +27,18 @@ export default {
     methods: {
         addStep(step) {
             this.steps.push(step)
+        },
+        deleteStep(step) {
+            let index = this.steps.indexOf(step)
+            if (index !== -1) this.steps.splice(index, 1)
         }
     },
     components: {
-        'add-step': AddStep
+        'add-step': AddStep,
+        'step-item': StepItem
     }
 }
 </script>
-
-<style>
-.line {
-  text-decoration: line-through;
-}
-</style>
 
 
 

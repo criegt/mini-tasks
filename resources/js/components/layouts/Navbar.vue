@@ -1,5 +1,5 @@
 <template>
-    <nav class="navbar navbar-expand-md navbar-dark bg-primary">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container">
             <router-link class="navbar-brand" to="/home">
                 <i class="fas fa-tasks mr-2"></i>

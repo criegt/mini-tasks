@@ -82,6 +82,6 @@ class StepController extends Controller
      */
     public function destroy(Step $step)
     {
-        //
+        $step->delete();
     }
 }

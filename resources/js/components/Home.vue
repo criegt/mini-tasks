@@ -2,14 +2,14 @@
     <div class="container mt-4">
         <div class="row">
             <div class="col-md-3 border-right">
-                <suits></suits>
+                <suits-main></suits-main>
             </div>
             <div class="col-md-6">
-                <tasks></tasks>
+                <tasks-main></tasks-main>
             </div>
             <div class="col-md-3 border-left">
                 <div class="row ml-2 sticky-top">
-                    <suits></suits>
+                    <suits-main></suits-main>
                 </div>
             </div>
         </div>
@@ -17,16 +17,16 @@
 </template>
 
 <script>
-import Tasks from './tasks/Tasks.vue'
-import Suits from './suits/Suits.vue'
+import TasksMain from './tasks/TasksMain.vue'
+import SuitsMain from './suits/SuitsMain.vue'
 
 export default {
     mounted() {
         //console.log('Component mounted.')
     },
     components:{
-        'tasks': Tasks,
-        'suits': Suits
+        'tasks-main': TasksMain,
+        'suits-main': SuitsMain
     }
 }
 </script>

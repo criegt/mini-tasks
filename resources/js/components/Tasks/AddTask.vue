@@ -56,7 +56,11 @@
                 axios.post(url, this.task)
                     .then(response => {
                         this.task = new Task()
-                        this.$emit('task-created', response.data)
+                        let task = response.data
+                        if(!task.steps) {
+                            task.steps = []
+                        }
+                        this.$emit('task-created', task)
                     }).catch(error => {
                         console.log(error)
                     })
