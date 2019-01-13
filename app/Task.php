@@ -15,4 +15,9 @@ class Task extends Model
     {
         return $this->hasMany('App\Step');
     }
+
+    public function suits()
+    {
+        return $this->belongsToMany('App\Suit');
+    }
 }

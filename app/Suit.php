@@ -9,4 +9,9 @@ class Suit extends Model
     protected $fillable = [
         'title', 'description',
     ];
+
+    public function tasks()
+    {
+        return $this->belongsToMany('App\Task');
+    }
 }
