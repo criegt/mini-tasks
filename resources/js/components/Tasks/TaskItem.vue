@@ -29,6 +29,16 @@
                             </a>
                         </div>
                     </div>
+                    <div class="float-right mt-1">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" 
+                                :id="`task${task.id}Check`">
+                            <label class="custom-control-label" 
+                                :for="`task${task.id}Check`">
+                                <i class="fas fa-check-double"></i>
+                            </label>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

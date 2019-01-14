@@ -22,13 +22,18 @@
                         </div>
                         <div class="form-group">
                             <h5>Suits</h5>
-                            <ul class="list-unstyled">
+                            <span class="text-muted"
+                                v-if="!suits.length">
+                                <strong>Wait a second...</strong>
+                            </span>
+                            <ul class="list-unstyled"
+                                v-else>
                                 <li class="border-top py-1 my-1"
                                     v-for="suit in suits" :key="suit.id">
                                     <div class="custom-control custom-checkbox">
                                         <input class="custom-control-input" type="checkbox"
                                             :id="`suit${suit.id}Checkbox`"
-                                            :value="suit"
+                                            :value="suit.id"
                                             v-model="selectedSuits">
                                         <label class="custom-control-label" 
                                             :for="`suit${suit.id}Checkbox`">
@@ -66,12 +71,10 @@
                 taskToEdit: {}
             }
         },
-        created() {
-            //this.getSuits()
-        },
         methods: {
             updateTask() {
                 let url = '/api/tasks/' + this.taskToEdit.id
+                this.taskToEdit.suitIds = this.selectedSuits
                 axios.put(url, this.taskToEdit)
                     .then(response => {
                         this.editOldTask()
@@ -83,7 +86,7 @@
             },
             setTask() {
                 this.taskToEdit = { ...this.task }
-                console.log(this.taskToEdit)
+                this.selectedSuits = this.taskToEdit.suits.map(s => s.id)
             },
             getSuits() {
                 let url = '/api/suits'
@@ -98,6 +101,13 @@
             editOldTask() {
                 this.task.title = this.taskToEdit.title
                 this.task.content = this.taskToEdit.content
+                if(this.selectedSuits.length) {
+                    this.task.suits = this.selectedSuits.map(i => {
+                        return this.suits.find(s => s.id === i)
+                    })
+                } else {
+                    this.task.suits = []
+                }
             }
         },
         watch: {

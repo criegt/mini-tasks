@@ -5,6 +5,7 @@ import NProgress from 'nprogress'
 import Home from './components/Home.vue'
 import About from './components/About.vue'
 import ShowTask from './components/Tasks/ShowTask.vue'
+import ShowSuit from './components/Suits/ShowSuit.vue'
 
 Vue.use(Router)
 
@@ -30,6 +31,11 @@ const router = new Router({
             path: '/tasks/:id',
             name: 'showTask',
             component: ShowTask
+        },
+        {
+            path: '/suits/:id',
+            name: 'showSuit',
+            component: ShowSuit
         }
     ]
 })

@@ -17,9 +17,9 @@
 </template>
 
 <script>
-import TasksMain from './Tasks/TasksMain.vue'
-import SuitsMain from './Suits/SuitsMain.vue'
-import TaskOptions from './Tasks/TaskOptions.vue'
+import TasksMain from '../Tasks/TasksMain.vue'
+import SuitsMain from './SuitsMain.vue'
+import TaskOptions from '../Tasks/TaskOptions.vue'
 
 export default {
     mounted() {
