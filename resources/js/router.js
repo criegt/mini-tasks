@@ -1,8 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import NProgress from 'nprogress'
+
 import Home from './components/Home.vue'
 import About from './components/About.vue'
+import ShowTask from './components/Tasks/ShowTask.vue'
 
 Vue.use(Router)
 
@@ -23,6 +25,11 @@ const router = new Router({
             path: '/about',
             name: 'about',
             component: About
+        },
+        {
+            path: '/tasks/:id',
+            name: 'showTask',
+            component: ShowTask
         }
     ]
 })

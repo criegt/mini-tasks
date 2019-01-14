@@ -16,6 +16,9 @@
                             <i class="fas fa-ellipsis-v"></i>
                         </button>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="taskOptionsdropdownMenu">
+                            <router-link class="dropdown-item" :to="`/tasks/${task.id}`">
+                                Show
+                            </router-link>
                             <a class="dropdown-item" href="#"
                                 @click.prevent="needEditTask(task)">
                                 Edit
@@ -45,8 +48,8 @@
                     <textarea class="form-control" :id="`stepContent${task.id}Textarea`"
                         v-if="editContentActive"
                         v-model="task.content"
-                        @keyup.esc="editContentActive = false"
-                        @blur="editContentActive = false"
+                        @keyup.esc="updateTaskContent()"
+                        @blur="updateTaskContent()"
                         v-focus>
                     </textarea>
                 </div>
@@ -84,8 +87,18 @@ export default {
                     iziToast.success({ title: 'Task deleted '})
                 })
                 .catch(error => {
-                    console.log(error)
+                    iziToast.error({ title: 'Error: ', message: error})
                 })
+        },
+        updateTaskContent() {
+            let url = '/api/tasks/' + this.task.id
+                axios.put(url, this.task)
+                    .catch(error => {
+                        iziToast.error({ title: 'Error: ', message: error})
+                    })
+                    .then(() => {
+                        this.editContentActive = false
+                    })
         },
         needEditTask(task) {
             this.$emit('need-edit-task', task)

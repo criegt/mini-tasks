@@ -41,6 +41,7 @@ export default {
     },
     methods: {
         createStep() {
+            if(!this.step.content) return
             let url = '/api/steps'
             axios.post(url, this.step)
                 .then(response => {

@@ -44,6 +44,7 @@
         },
         methods: {
             createTask() {
+                if(!this.task.title) return
                 let url = '/api/tasks'
                 axios.post(url, this.task)
                     .then(response => {
@@ -55,7 +56,7 @@
                         this.$emit('task-created', task)
                         iziToast.success({ title: 'Task created'})
                     }).catch(error => {
-                        console.log(error)
+                        iziToast.error({ title: 'Error: ', message: error})
                     })
             }
         }

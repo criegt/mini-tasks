@@ -11,6 +11,8 @@ class Task extends Model
         'title', 'content', 'task_state', 'suit_id',
     ];
 
+    public $suit_ids;
+
     public function steps()
     {
         return $this->hasMany('App\Step');
@@ -18,6 +20,6 @@ class Task extends Model
 
     public function suits()
     {
-        return $this->belongsToMany('App\Suit');
+        return $this->belongsToMany('App\Suit', 'task_suit');
     }
 }

@@ -1,6 +1,15 @@
 <template>
     <div class="m-2">
-        <h4>Suits</h4>
+        <h5>My suits</h5>
+        <ul class="list-unstyled">
+            <li class="mb-2"
+                v-for="suit in suits" :key="suit.id">
+                <router-link to="/">
+                    <small>{{ suit.title }}</small>
+                </router-link>
+            </li>
+        </ul>
+        <h5 class="mt-2">Shared with my</h5>
         <ul class="list-unstyled">
             <li class="mb-2"
                 v-for="suit in suits" :key="suit.id">

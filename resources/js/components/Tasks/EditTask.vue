@@ -3,7 +3,7 @@
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
-                <form @submit.prevent="updateTask(task)">
+                <form @submit.prevent="updateTask()">
                     <div class="modal-header">
                         <h5 class="modal-title" id="editTaskModalTitle">Edit Task</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -13,11 +13,11 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <input type="text" class="form-control" placeholder="Title"
-                                v-model="task.title">
+                                v-model="taskToEdit.title">
                         </div>
                         <div class="form-group">
                             <textarea class="form-control" placeholder="Content" 
-                                v-model="task.content">
+                                v-model="taskToEdit.content">
                             </textarea>
                         </div>
                         <div class="form-group">
@@ -62,15 +62,28 @@
             return {
                 modalId: 'editTaskModal',
                 suits: [],
-                selectedSuits: []
+                selectedSuits: [],
+                taskToEdit: {}
             }
         },
         created() {
-            this.getSuits()
+            //this.getSuits()
         },
         methods: {
             updateTask() {
-
+                let url = '/api/tasks/' + this.taskToEdit.id
+                axios.put(url, this.taskToEdit)
+                    .then(response => {
+                        this.editOldTask()
+                        iziToast.success({ title: 'Task edited'})
+                    })
+                    .catch(error => {
+                        iziToast.error({ title: 'Error: ', message: error})
+                    })
+            },
+            setTask() {
+                this.taskToEdit = { ...this.task }
+                console.log(this.taskToEdit)
             },
             getSuits() {
                 let url = '/api/suits'
@@ -81,11 +94,17 @@
                     .catch(error => {
                         console.log(error)
                     })
+            },
+            editOldTask() {
+                this.task.title = this.taskToEdit.title
+                this.task.content = this.taskToEdit.content
             }
         },
         watch: {
             taskChange() {
                 $(`#${this.modalId}`).modal('show')
+                this.setTask()
+                if(this.taskChange === 1) this.getSuits()
             }
         }
     }

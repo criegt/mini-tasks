@@ -12,6 +12,6 @@ class Suit extends Model
 
     public function tasks()
     {
-        return $this->belongsToMany('App\Task');
+        return $this->belongsToMany('App\Task', 'task_suit');
     }
 }

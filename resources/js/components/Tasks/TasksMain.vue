@@ -12,7 +12,10 @@
             @task-deleted="deleteTask"
             @need-edit-task="openEditTask">
         </task-item>
-        <edit-task :task="selectedTask" :task-change="taskChange"></edit-task>
+        <edit-task 
+            :task="selectedTask" 
+            :task-change="taskChange">
+        </edit-task>
         <infinite-loading spinner="waveDots" class="mt-4"
             @infinite="infiniteHandler">
             <div slot="no-more">

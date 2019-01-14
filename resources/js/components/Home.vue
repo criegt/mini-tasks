@@ -9,7 +9,7 @@
             </div>
             <div class="col-md-3 border-left">
                 <div class="row ml-2 sticky-top">
-                    <suits-main></suits-main>
+                    <task-properties></task-properties>
                 </div>
             </div>
         </div>
@@ -19,6 +19,7 @@
 <script>
 import TasksMain from './tasks/TasksMain.vue'
 import SuitsMain from './suits/SuitsMain.vue'
+import TaskProperties from './tasks/TaskProperties.vue'
 
 export default {
     mounted() {
@@ -26,7 +27,8 @@ export default {
     },
     components:{
         'tasks-main': TasksMain,
-        'suits-main': SuitsMain
+        'suits-main': SuitsMain,
+        'task-properties': TaskProperties
     }
 }
 </script>

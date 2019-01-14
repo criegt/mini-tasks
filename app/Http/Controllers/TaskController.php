@@ -14,7 +14,7 @@ class TaskController extends Controller
      */
     public function index()
     {
-        return Task::with('steps')->orderBy('created_at', 'desc')->paginate();
+        return Task::with('suits')->with('steps')->orderBy('created_at', 'desc')->paginate();
     }
 
     /**
@@ -43,9 +43,10 @@ class TaskController extends Controller
      * @param  \App\Task  $task
      * @return \Illuminate\Http\Response
      */
-    public function show(Task $task)
+    public function show($id)
     {
-        //
+        $task = Task::with('steps')->findOrFail($id);
+        return $task;
     }
 
     /**
@@ -57,7 +58,9 @@ class TaskController extends Controller
      */
     public function update(Request $request, Task $task)
     {
-        //
+        $task->title = $request->title;
+        $task->content = $request->content;
+        $task->save();
     }
 
     /**
