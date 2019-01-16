@@ -14,7 +14,8 @@
         </task-item>
         <edit-task 
             :task="selectedTask" 
-            :task-change="taskChange">
+            :task-change="taskChange"
+            @task-updated="editTask">
         </edit-task>
         <infinite-loading spinner="waveDots" class="mt-4"
             @infinite="infiniteHandler">
@@ -29,7 +30,6 @@
 </template>
 
 <script>
-import axios from 'axios'
 import InfiniteLoading from 'vue-infinite-loading'
 import AddTask from './AddTask.vue'
 import TaskItem from './TaskItem.vue'
@@ -48,7 +48,7 @@ export default {
         infiniteHandler($state) {
             this.page++
             let url = '/api/tasks?page=' + this.page
-            axios.get(url).then(response => {
+            this.$http.get(url).then(response => {
                 let tasks = response.data.data
                 if (tasks.length) {
                     this.tasks = this.tasks.concat(tasks)
@@ -57,20 +57,27 @@ export default {
                     $state.complete()
                 }
             }).catch(error => {
-                console.log(error)
+                this.$alert.error({ title: 'Error: try again' })                
             })
         },
         refreshTasks() {
             this.page = 1
             let url = '/api/tasks?page=' + this.page
-            axios.get(url)
+            this.$http.get(url)
                 .then(response => {
                     this.tasks = response.data.data
                 })
-                .catch(error => {})
+                .catch(error => {
+                    this.$alert.error({ title: 'Error: try again' })
+                })
         },
         addTask(task) {
             this.tasks.unshift(task)
+        },
+        editTask(task) {
+            let index = this.tasks.findIndex(t => t.id === task.id)
+            let newTask = {...this.selectedTask, ...task}
+            this.$set(this.tasks, index, newTask)
         },
         deleteTask(task) {
             this.tasks = this.tasks.filter((t) => t !== task)

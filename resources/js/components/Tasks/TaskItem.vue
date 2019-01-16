@@ -70,9 +70,7 @@
 </template>
 
 <script>
-import axios from 'axios'
 import moment from 'moment'
-import iziToast from 'izitoast'
 
 import StepsMain from '../Steps/StepsMain.vue'
 
@@ -91,20 +89,20 @@ export default {
     methods: {
         deleteTask(task) {
             let url = '/api/tasks/' + task.id
-            axios.delete(url)
+            this.$http.delete(url)
                 .then(response => {
                     this.$emit('task-deleted', task)
-                    iziToast.success({ title: 'Task deleted '})
+                    this.$alert.success({ title: 'Task deleted '})
                 })
                 .catch(error => {
-                    iziToast.error({ title: 'Error: ', message: error})
+                    this.$alert.error({ title: 'Error: try again' })
                 })
         },
         updateTaskContent() {
             let url = '/api/tasks/' + this.task.id
-                axios.put(url, this.task)
+                this.$http.put(url, this.task)
                     .catch(error => {
-                        iziToast.error({ title: 'Error: ', message: error})
+                        this.$alert.error({ title: 'Error: try again' })
                     })
                     .then(() => {
                         this.editContentActive = false

@@ -71,7 +71,9 @@ class StepController extends Controller
      */
     public function update(Request $request, Step $step)
     {
-        //
+        $step->content = $request->content;
+        $step->state = $request->state;
+        $step->save();
     }
 
     /**

@@ -21,7 +21,6 @@
 </template>
 
 <script>
-import axios from 'axios'
 
 export default {
     props: {
@@ -35,13 +34,25 @@ export default {
     methods: {
         deleteStep(step) {
             let url = '/api/steps/' + step.id
-            axios.delete(url)
+            this.$http.delete(url)
                 .then(response => {
                     this.$emit('step-deleted', step)
                 })
                 .catch(error => {
-                    console.log(error)
+                    this.$alert.error({ title: 'Error: try again' })
                 })
+        },
+        updateState() {
+            let url = '/api/steps/' + this.step.id
+            this.$http.put(url, this.step)
+                .catch(error => {
+                    this.$alert.error({ title: 'Error: try again' })
+                })
+        }
+    },
+    watch: {
+        'step.state'() {
+            this.updateState()
         }
     }
 }

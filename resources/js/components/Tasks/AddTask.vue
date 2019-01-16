@@ -31,8 +31,6 @@
 </template>
 
 <script>
-    import axios from 'axios'
-    import iziToast from 'izitoast'
     import { Task } from '../../models/task';
 
     export default {
@@ -46,7 +44,7 @@
             createTask() {
                 if(!this.task.title) return
                 let url = '/api/tasks'
-                axios.post(url, this.task)
+                this.$http.post(url, this.task)
                     .then(response => {
                         this.task = new Task()
                         let task = response.data
@@ -54,9 +52,9 @@
                             task.steps = []
                         }
                         this.$emit('task-created', task)
-                        iziToast.success({ title: 'Task created'})
+                        this.$alert.success({ title: 'Task created'})
                     }).catch(error => {
-                        iziToast.error({ title: 'Error: ', message: error})
+                        this.$alert.error({ title: 'Error: try again' })
                     })
             }
         }

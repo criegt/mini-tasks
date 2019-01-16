@@ -55,9 +55,6 @@
 </template>
 
 <script>
-    import axios from 'axios'
-    import iziToast from 'izitoast'
-
     export default {
         props: {
             task: Object,
@@ -75,13 +72,14 @@
             updateTask() {
                 let url = '/api/tasks/' + this.taskToEdit.id
                 this.taskToEdit.suitIds = this.selectedSuits
-                axios.put(url, this.taskToEdit)
+                this.$http.put(url, this.taskToEdit)
                     .then(response => {
-                        this.editOldTask()
-                        iziToast.success({ title: 'Task edited'})
+                        //this.editOldTask()
+                        this.$alert.success({ title: 'Task edited'})
+                        this.$emit('task-updated', this.taskToEdit)
                     })
                     .catch(error => {
-                        iziToast.error({ title: 'Error: ', message: error})
+                        this.$alert.error({ title: 'Error: try again' })
                     })
             },
             setTask() {
@@ -90,12 +88,12 @@
             },
             getSuits() {
                 let url = '/api/suits'
-                axios.get(url)
+                this.$http.get(url)
                     .then(response => {
                         this.suits = response.data
                     })
                     .catch(error => {
-                        console.log(error)
+                        this.$alert.error({ title: 'Error: try again' })
                     })
             },
             editOldTask() {

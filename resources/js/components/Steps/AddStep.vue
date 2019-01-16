@@ -22,9 +22,7 @@
 </template>
 
 <script>
-import axios from 'axios'
-import { Step } from '../../models/step';
-
+import { Step } from '../../models/step'
 
 export default {
     props: {
@@ -43,14 +41,14 @@ export default {
         createStep() {
             if(!this.step.content) return
             let url = '/api/steps'
-            axios.post(url, this.step)
+            this.$http.post(url, this.step)
                 .then(response => {
                     this.step = new Step()
                     this.step.task_id = this.taskId
                     this.$emit('step-created', response.data)
                 })
                 .catch(error => {
-                    console.log(error)
+                    this.$alert.error({ title: 'Error: try again' })
                 })
         }
     },

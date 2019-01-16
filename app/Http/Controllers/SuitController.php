@@ -35,7 +35,16 @@ class SuitController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'title' => 'required'
+        ]);
+
+        $suit = Suit::create([
+            'title' => $request->title,
+            'content' => $request->description
+        ]);
+
+        return $suit;
     }
 
     /**
@@ -80,6 +89,6 @@ class SuitController extends Controller
      */
     public function destroy(Suit $suit)
     {
-        //
+        $suit->delete();
     }
 }

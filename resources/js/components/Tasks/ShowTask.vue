@@ -54,7 +54,6 @@
 </template>
 
 <script>
-import axios from 'axios'
 import moment from 'moment'
 import ShowSteps from '../Steps/ShowSteps.vue'
 
@@ -73,12 +72,12 @@ export default {
     methods: {
         getTask() {
             let url = '/api/tasks/' + this.$route.params.id
-            axios.get(url)
+            this.$http.get(url)
                 .then(response => {
                     this.task = response.data
                 })
                 .catch(error => {
-                    console.log(error)
+                    this.$alert.error({ title: 'Error: try again' })                    
                 })
         }
     },
